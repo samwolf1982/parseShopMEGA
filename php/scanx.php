@@ -9,23 +9,28 @@ header('Content-Type: text/html; charset=utf-8');
 //                 caci@leeching.net   mail
 //    db                us                 pass
 
-//require_once ('../phpQuery/phpQuery/phpQuery.php');
-include_once 'Manager.php';
-//include_once 'parse.php';
+require_once ('../phpQuery/phpQuery/phpQuery.php');
+require_once 'Manager.php';
+require_once 'Sites.php';
+require_once 'Parse_a1.php';
 
 
-$obj=new Manager();
-// 1 for ali
-$obj->run(1);
+$arr= array();
+
+$arr[]=new Sites('alitrust.ru','http://alitrust.ru/',array('boasts/odezhda-i-obuv' ));
+
+$obj=new Manager($arr);
+// 0 for ali
+$obj->run(0);
 
 
 // обязательно ввести все
 
 /*
   loaddocpost('http://rent-scaner.ru/estate?per-page='.$GLOBALS['per_page'],array(),'alitrust.ru');*/
-    loaddocpost('http://alitrust.ru/boasts/odezhda-i-obuv',array(),'alitrust.ru');
+  /*  loaddocpost('http://alitrust.ru/boasts/odezhda-i-obuv',array(),'alitrust.ru');
     echo "<br>";
-     loaddocpost('http://alitrust.ru/boasts/bizhuteriya-i-chasy',array(),'alitrust.ru');
+     loaddocpost('http://alitrust.ru/boasts/bizhuteriya-i-chasy',array(),'alitrust.ru');*/
 
 
 

@@ -5,32 +5,30 @@
   */
   class Manager
   {
-  	
-  private $listsites=array();
-  	public function switch_sites($value='')
-  	{
-  		# code...
-
-
-
-  	}
+  	// arr Sites
+  public $listsites=array(); 
+ 
   	public function run($index_site)
   	{
   		# code...
        // select on switch sites
             switch ($index_site) {
-            	case 1:
+            	case 0:
             		# code...
             	// take site from $listsites
-phpQuery::ajaxAllowHost($host); 
+      //	print_r(expression)
+/*echo $this->listsites[$index_site]->url.$this->listsites[$index_site]->childpage[0].'-----------' ;*/
+
+phpQuery::ajaxAllowHost($this->listsites[$index_site]->host); 
 	# code...
-phpQuery::get($url, array(), 'parse'); 
+phpQuery::get($this->listsites[$index_site]->url.$this->listsites[$index_site]->childpage[0],'Parse_alitruse::parse'); 
 
 
 
 
 
- echo "ali";
+
+ //echo "ali";
 
                         
             		break;
@@ -47,9 +45,17 @@ phpQuery::get($url, array(), 'parse');
 
   	}
 
-  	function __construct()
+  	function __construct($sitesList)
   	{
   		# code...
+  		$this->listsites=$sitesList;
+  	}
+  	 	public function switch_sites($value='')
+  	{
+  		# code...
+
+
+
   	}
 
 

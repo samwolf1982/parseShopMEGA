@@ -1,44 +1,52 @@
 <?php
 
-$GLOBALS['curenhost']='http://alitrust.ru';
+//$GLOBALS['curenhost']='http://alitrust.ru';
 
 class Parse_alitruse
 {
- private $host;
- private $u_path;
- private $res_arr=array();
- private $total_count;
- private $document;
-  function __construct($do,$host,$unique_path)
-  {
-    # code...
-$this->host=$host;
-$this->u_path=$unique_path;
-$this->document=phpQuery::newDocument($do);
-$this->total_count =$this->document->find($str=str_replace('>', '', $this->u_path) )->count();
 
+ public $ways=null; // cписок путей беру из фф   
+ public $curenhost;
+ public $child_links=array();
+     static public  function parse($do)
+     {
+  $arrayName = array('main' =>'div.b-boast-list__item:nth-child() ', 'links_add_a'=>'div.b-boast-list__item:nth-child(' );
+  $obj=new Parse_alitruse($arrayName,'http://alitrust.ru');
+   # code...
+ $document=phpQuery::newDocument($do);
+  
+  echo $obj->ways['main'];
+ $total_count =$document->find($str=str_replace('>', '', $obj->ways['main'])   )->count();
 
-  }
-  public function search_elements()
-  {
+  //echo "I'm parse ali: ".$total_count;
+
+//***** 
+ // main loop
     # code...
- for ($i=1; $i <= $this->total_count-$this->total_count+1 ; $i++) { 
+ for ($i=1; $i <= $total_count-$total_count+1 ; $i++) { 
+  // результат для сссылок на дочерние страницы
   $res=array();
   # code...
-$a_main="div.b-boast-list__item:nth-child(".$i.") a";
-$el=$this->document->find($str=str_replace('>', '', $a_main) );
+$a_main=$obj->ways['links_add_a'].$i.") a";
+$el=$document->find($str=str_replace('>', '', $a_main) );
 //$a="div.b-boast-list__item:nth-child(".$i.") img";
 $pq=pq($el);
-$res['href']=$GLOBALS['curenhost'].$pq->attr('href');
 
-//     картинка дублируется
-/*
-$a="div.b-boast-list__item:nth-child(".$i.") img";
-$el=$this->document->find($str=str_replace('>', '', $a) );
-$pq=pq($el);
-$res['src']=$GLOBALS['curenhost']. $pq->attr('src');
-*/
-// call go to main
+// result    формирование полной ссылки
+$obj->child_links[]=$obj->curenhost.$pq->attr('href');
+//$res['href']=$obj->curenhost.$pq->attr('href');
+  //echo "I'm parse ali: ".$res['href'];
+$pq=null;
+
+
+   // end loop
+  }
+
+
+// loop 2
+for ($i=0; $i < ; $i++) { 
+  # code...
+// поход в дочерние ссылки по полной ссылке выше
 $r=$this->go_to_main_el($res['href']);
 $res['fotos']=$r['fotos'];
 $res['text']=$r['text'];
@@ -48,16 +56,16 @@ $res['text']=$r['text'];
 
 
 
-$this->res_arr[]=$res;
-print_r($res);
-echo "<br><br>";
+$obj->result[]=$res;
 
-// end loop
-//print_r( $this->res_arr);
+   // end loop
 }
-$this->document=null;
+  //*****
 
-  }
+
+   $document=null;
+       }
+
     // переход на страницу
   public function go_to_main_el($link)
   {
@@ -110,23 +118,17 @@ $temp['text']=pq($el)->text();
 
 
 
-function parseali($document)
-{
-
-$res=array();
-	# code...
-  $document = phpQuery::newDocument($document);
-
-  if(1==1){
-    //$document1 = phpQuery::newDocument($document);
-     // $document2 = phpQuery::newDocument($document);
-
-    $obj=new Parse_alitruse($document,$GLOBALS['curenhost'],"div.b-boast-list__item:nth-child() ");
-    $obj->search_elements();
-     //$obj->go_to_main_el();
 
 
-  
-
+  function __construct($a,$host)
+  {
+    # code...
+      $this->ways=$a;
+      $this->curenhost=$host;
   }
+
+
+
+
+}
 ?>

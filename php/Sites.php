@@ -4,14 +4,16 @@
 */
 class Sites
 {
-	$host=null;
-		$url=null;
-			$some=null;
-	function __construct($host,$url)
+public	$host=null;
+	public	$url=null;
+		// array child pages
+		public	$childpage=null;
+	function __construct($host,$url,$childpage)
 	{
 		# code...
-		$this->host=$host;
+		        $this->host=$host;
 				$this->url=$url;
+				$this->childpage=$childpage;
 	}
 }
 
