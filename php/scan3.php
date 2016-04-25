@@ -48,13 +48,39 @@ $s='json=create_post&nonce=20aa44b434&title=gogogo';
 $s='api/get_nonce/?controller=auth&method=generate_auth_cookie'; // au cookie
 $s='api/auth/generate_auth_cookie/?nonce=a19fe2b644&username=root&password=1111&insecure=cool nonce';
 //---
-$s='api/get_nonce/?controller=auth&method=generate_auth_cookie'; // au cookie
+//1  get nonce for auth  
+$s='api/get_nonce/?controller=auth&method=generate_auth_cookie'; // 5309e34c29
+//1a  for root n user
+//                                         nonce UP
+$s='api/auth/generate_auth_cookie/?nonce=5309e34c29&username=root&password=1111&insecure=cool';
+  /*  
+    [cookie] => root|1462799960|jXQdChAgSeDRsN0glTzhcVqFDbdFEWWlTQEajamD3ti|5b674e8309f553c88c0d297f0dda412982950c530af80c79876efa7cf936d505
+    [cookie_name] => wordpress_logged_in_0e9958a8fddd1f94ef048c3ef1e52fe0
+*/
+/*        EXAMPLE
+Use cookie like this with your other controller calls: http://localhost/api/contoller-name/method-name/?cookie=Catherine|1392018917|3ad7b9f1c5c2cccb569c8a82119ca4fd
+*/
 
-$path='http://testfordel.atwebpages.com/';
+//2  get nounce  for create post
+$s='api/get_nonce?controller=posts&method=create_post&cookie=root|1462797296|HasA4M3lFwk8NZORFvYdQ2Sd3iGoj7rILCXruS5uXFI|7211793b62e5d8726b37544215506315b0039475567327d82c74e529a04c3fa8'; // 5309e34c29
+//3 create post
+$s3='api/create_post?nonce=9ed90f1e86&title=loremlorem&author=root&cookie=root|1462799960|jXQdChAgSeDRsN0glTzhcVqFDbdFEWWlTQEajamD3ti|5b674e8309f553c88c0d297f0dda412982950c530af80c79876efa7cf936d505&cookie_name=wordpress_logged_in_0e9958a8fddd1f94ef048c3ef1e52fe0'; //
+$a4postfield='nonce=9ed90f1e86&title=loremlorem&author=root&cookie=root|1462799960|jXQdChAgSeDRsN0glTzhcVqFDbdFEWWlTQEajamD3ti|5b674e8309f553c88c0d297f0dda412982950c530af80c79876efa7cf936d505&cookie_name=wordpress_logged_in_0e9958a8fddd1f94ef048c3ef1e52fe0';
 
-$s1='api/auth/generate_auth_cookie/?nonce=5309e34c29&username=root&password=1111&insecure=cool';
-phpQuery::get($path.$s1,'parse');
 
+$path='http://testfordel.atwebpages.com/api/create_post'; 
+//echo $path.$s3;
+/*$s1='api/auth/generate_auth_cookie/?nonce=5309e34c29&username=root&password=1111&insecure=cool';*/
+//phpQuery::get($path.$s3,'parse');
+ if( $curl = curl_init() ) {
+    curl_setopt($curl, CURLOPT_URL, $path);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
+    curl_setopt($curl, CURLOPT_POST, false);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, "a=4&b=7");
+    $out = curl_exec($curl);
+    echo $out;
+    curl_close($curl);
+  }
 
 function parse($document)
 {
