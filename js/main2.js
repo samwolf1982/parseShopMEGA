@@ -16,7 +16,7 @@
           var d={'val1': 999}; // первий раз ненадо дни автоматом 2 
 
 $.ajax({
-  url: 'php/scan3.php',
+  url: 'php/scanx.php',  //  url: 'php/scan3.php', for conect do wp
    type: 'POST',
    data: d,
   success: function(data){
