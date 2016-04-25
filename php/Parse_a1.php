@@ -64,7 +64,18 @@ $obj->result[]=$res;
   //*****
    $document=null;
 
-   print_r($obj->result);
+// post to wp
+
+$data='title=loremlorem';
+$wp=new Sent_to_WP('http://testfordel.atwebpages.com/api/create_post',$data);
+$wp->send('root');
+
+
+
+
+
+
+  // print_r($obj->result);
 
 
 }

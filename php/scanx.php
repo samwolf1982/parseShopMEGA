@@ -13,6 +13,7 @@ require_once ('../phpQuery/phpQuery/phpQuery.php');
 require_once 'Manager.php';
 require_once 'Sites.php';
 require_once 'Parse_a1.php';
+require_once 'Sent_to_WP.php';
 
 
 $arr= array();
