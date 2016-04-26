@@ -10,38 +10,28 @@
  
   	public function run($index_site)
   	{
+
+//phpQuery::ajaxAllowHost($this->listsites[$index_site]->host); 
+  # code...
+//print_r($this->listsites);
+
+      echo $this->listsites[0]->url.$this->listsites[0]->childpage[$index_site].'-----------';
+
+try {
+  phpQuery::get($this->listsites[0]->url.$this->listsites[0]->childpage[$index_site],'Parse_alitruse::parse'); 
+} catch (Exception $e) {
+       echo "ошибка соединения ";
+}
+try {
+  
+ echo $this->listsites[0]->url.$this->listsites[0]->childpage[$index_site].'/?page=2'.'-----------';
+phpQuery::get($this->listsites[0]->url.$this->listsites[0]->childpage[$index_site].'?page=2','Parse_alitruse::parse'); 
+} catch (Exception $e) {
+         echo "ошибка соединения " ;
+}
+
+      
   		# code...
-       // select on switch sites
-            switch ($index_site) {
-            	case 0:
-            		# code...
-            	// take site from $listsites
-      //	print_r(expression)
-/*echo $this->listsites[$index_site]->url.$this->listsites[$index_site]->childpage[0].'-----------' ;*/
-
-phpQuery::ajaxAllowHost($this->listsites[$index_site]->host); 
-	# code...
-phpQuery::get($this->listsites[$index_site]->url.$this->listsites[$index_site]->childpage[4],'Parse_alitruse::parse'); 
-
-
-
-
-
-
- //echo "ali";
-
-                        
-            		break;
-            		case 2:
-            		# code...
-
-            	
-            		break;
-            	
-            	default:
-            		# code...
-            		break;
-            }
 
   	}
 

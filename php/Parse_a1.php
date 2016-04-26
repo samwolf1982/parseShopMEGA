@@ -9,6 +9,7 @@ class Parse_alitruse
  public $curenhost;
  public $child_links=array();
   public $result=array();
+  public $status=true;
      static public  function parse($do)
      {
   $arrayName = array('main' =>'div.b-boast-list__item:nth-child() ', 'links_add_a'=>'div.b-boast-list__item:nth-child(' );
@@ -16,14 +17,20 @@ class Parse_alitruse
    # code...
  $document=phpQuery::newDocument($do);
   
+
+
+
   //echo $obj->ways['main'];
  $total_count =$document->find($str=str_replace('>', '', $obj->ways['main'])   )->count();
 
 //echo "TOTSL: ".$total_count;
 //***** 
+
+
+
  // 1  loop
     # code...
- for ($i=1; $i <= $total_count-$total_count+6 ; $i++) { 
+ for ($i=1; $i <= $total_count-$total_count+3 ; $i++) { 
   // результат для сссылок на дочерние страницы
   $res=array();
   # code...
@@ -110,8 +117,6 @@ public function create_content($data)
 
      $res.='<p>'.$data['text'].'</p>';
   # code...
-  $str='<p>Добро пожаловать в WordPress. Это ваша next запись. Отредактируйте или удалите её, затем пишите!</p>
-<p><img class="alignnone" src="https://lh5.googleusercontent.com/DkB_oV-xYF6jcGt37LaipfCqES1Dli7c8Iti3YynRx_mBFiNpR-tHhp7GR8EOc0ConyPm-hYqA=s640-h400-e365" width="640" height="400" /></p>';
 
 
   return 'content='.$res;

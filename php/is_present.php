@@ -28,10 +28,15 @@ fclose($myfile);
 		if(!in_array($value, $this->all_hasess)){
                    $this->all_hasess[]=$value;
                    // работа дальше
+                   file_put_contents($this->path,
+	implode(",",$this->all_hasess));
+                   $this->all_hasess=null;
+                   $file_c = file_get_contents($this->path);
+        $this->all_hasess = explode(",",trim($file_c));
+
                    return false;
 		}
 		else return true;
-
 	}
 
 
@@ -42,15 +47,6 @@ fclose($myfile);
 file_put_contents($this->path,
 	implode(",",$this->all_hasess));
 
-
-//$colms = explode(",",trim($file_c));
-
-    
-
-
-
-
-     // file_put_contents('hasess.txt',implode(",",$this->all_hasess));
 
    }
 }

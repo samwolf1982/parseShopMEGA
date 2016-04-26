@@ -23,10 +23,12 @@ $arr= array();
 
 
 $arr[]=new Sites('alitrust.ru','http://alitrust.ru/',array('boasts/odezhda-i-obuv','boasts/bizhuteriya-i-chasy','boasts/vse-dlya-detyei','boasts/home','boasts/pets','boasts/telefony-i-kompyutery','boasts/sumki-i-aksessuary','sport-khobbi-i-razvlecheniya','boasts/avtotovary','boasts/elektronika','boasts/adult18','boasts/other' ));//0-11
-
+phpQuery::ajaxAllowHost('alitrust.ru'); 
 $obj=new Manager($arr);
 // 0 for ali
+// первыи из arr[];
 $obj->run(0);
+$obj->run(1);
 
 
 // обязательно ввести все
