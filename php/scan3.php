@@ -23,7 +23,7 @@ $content='<p><img src="http://json.org/img/json160.gif" alt="lorem" />Добро
 <p>&nbsp;</p>';
 $content='<p>OKI</p>';
 
-$s='json=1';
+$sjs='json=1';
 $s='json=get_recent_posts';
 //$s='api/core/get_category_posts/';
 $s='json=respond.submit_comment';
@@ -70,8 +70,12 @@ $a4postfield='nonce=9ed90f1e86&title=loremlorem&author=root&cookie=root|14627999
 
 $path='http://testfordel.atwebpages.com/api/create_post'; 
 //echo $path.$s3;
-/*$s1='api/auth/generate_auth_cookie/?nonce=5309e34c29&username=root&password=1111&insecure=cool';*/
-//phpQuery::get($path.$s3,'parse');
+$s1='api/auth/generate_auth_cookie/?nonce=5309e34c29&username=root&password=1111&insecure=cool';
+$path='http://testfordel.atwebpages.com/?json=1'; 
+
+phpQuery::get($path.$sjs,'parse');
+
+/*      IT WORK DONT DELETE
  if( $curl = curl_init() ) {
     curl_setopt($curl, CURLOPT_URL, $path);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
@@ -81,7 +85,7 @@ $path='http://testfordel.atwebpages.com/api/create_post';
     echo $out;
     curl_close($curl);
   }
-
+*/
 function parse($document)
 {
   echo "string";

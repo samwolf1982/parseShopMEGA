@@ -16,14 +16,14 @@ class Parse_alitruse
    # code...
  $document=phpQuery::newDocument($do);
   
-  echo $obj->ways['main'];
+  //echo $obj->ways['main'];
  $total_count =$document->find($str=str_replace('>', '', $obj->ways['main'])   )->count();
 
-
+//echo "TOTSL: ".$total_count;
 //***** 
  // 1  loop
     # code...
- for ($i=1; $i <= $total_count-$total_count+1 ; $i++) { 
+ for ($i=1; $i <= $total_count-$total_count+6 ; $i++) { 
   // результат для сссылок на дочерние страницы
   $res=array();
   # code...
@@ -46,40 +46,76 @@ $pq=null;
 // loop 2   проход по 50 ссилок
 foreach ($obj->child_links as $key => $value) {
   # code...
-      
+      sleep(rand(3,10));
          // поход в дочерние ссылки по полной ссылке выше
 $r=$obj->go_to_main_el($value,$obj->curenhost);
 
 
-$state=1;   // проверка на совпадение  сделать
-
-if(is_null($state)) break;
-else{
+$state=1;   // проверка на совпадение  сделать     false    go to wp 
+if( $GLOBALS['is_present']->is_present(hash('ripemd160', $r['text']))==false){
 
 $res['fotos']=$r['fotos'];
 $res['text']=$r['text'];
 $obj->result[]=$res;
-   // end loop 2
-           }}
-  //*****
-   $document=null;
 
 // post to wp
 
-$data='title=loremlorem';
+$data='title=loremlorem&'.$obj->create_content($res);
 $wp=new Sent_to_WP('http://testfordel.atwebpages.com/api/create_post',$data);
 $wp->send('root');
 
 
 
+}else{
+  echo 'PRESENT ';
+  // break
+}
+
+//if()    
+/* echo "-------";echo  hash('ripemd160', $r['text']);
+echo "-------";*/
+
+if(is_null($state)) break;
+else{
 
 
 
-  // print_r($obj->result);
+
+
+   // end loop 2
+           }}
+  //*****
+ 
+   $document=null;
+
+
+
+
+
+
+
+   print_r($obj->result);
 
 
 }
+public function create_content($data)
+{
+  $res='';
+  foreach ($data['fotos'] as $key => $value) {
+    # code...
 
+   $res.=('<p><img src="'.$value.'" /></p>');
+   
+  }
+
+     $res.='<p>'.$data['text'].'</p>';
+  # code...
+  $str='<p>Добро пожаловать в WordPress. Это ваша next запись. Отредактируйте или удалите её, затем пишите!</p>
+<p><img class="alignnone" src="https://lh5.googleusercontent.com/DkB_oV-xYF6jcGt37LaipfCqES1Dli7c8Iti3YynRx_mBFiNpR-tHhp7GR8EOc0ConyPm-hYqA=s640-h400-e365" width="640" height="400" /></p>';
+
+
+  return 'content='.$res;
+}
 
 
     // переход на страницу

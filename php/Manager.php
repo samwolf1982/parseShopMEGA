@@ -21,7 +21,7 @@
 
 phpQuery::ajaxAllowHost($this->listsites[$index_site]->host); 
 	# code...
-phpQuery::get($this->listsites[$index_site]->url.$this->listsites[$index_site]->childpage[0],'Parse_alitruse::parse'); 
+phpQuery::get($this->listsites[$index_site]->url.$this->listsites[$index_site]->childpage[4],'Parse_alitruse::parse'); 
 
 
 

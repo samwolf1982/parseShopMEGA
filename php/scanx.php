@@ -10,15 +10,19 @@ header('Content-Type: text/html; charset=utf-8');
 //    db                us                 pass
 
 require_once ('../phpQuery/phpQuery/phpQuery.php');
+require_once 'is_present.php';
 require_once 'Manager.php';
 require_once 'Sites.php';
 require_once 'Parse_a1.php';
 require_once 'Sent_to_WP.php';
 
-
+                               //  FULL PATH !!!!!
+$is_present=new Is_Present('/opt/lampp/htdocs/testwp/php/hasess.txt');
+$GLOBALS['is_present'] = $is_present;
 $arr= array();
 
-$arr[]=new Sites('alitrust.ru','http://alitrust.ru/',array('boasts/odezhda-i-obuv' ));
+
+$arr[]=new Sites('alitrust.ru','http://alitrust.ru/',array('boasts/odezhda-i-obuv','boasts/bizhuteriya-i-chasy','boasts/vse-dlya-detyei','boasts/home','boasts/pets','boasts/telefony-i-kompyutery','boasts/sumki-i-aksessuary','sport-khobbi-i-razvlecheniya','boasts/avtotovary','boasts/elektronika','boasts/adult18','boasts/other' ));//0-11
 
 $obj=new Manager($arr);
 // 0 for ali

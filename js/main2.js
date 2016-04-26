@@ -7,7 +7,7 @@
   });
   // button  scan
       $(function() {
-    $( "input[type=submit], button" )
+    $( "#bobo" )
       .button()
       .click(function( event ) {
         event.preventDefault();
@@ -16,12 +16,12 @@
           var d={'val1': 999}; // первий раз ненадо дни автоматом 2 
 
 $.ajax({
-  url: 'php/scanx.php',  //  url: 'php/scan3.php', for conect do wp
+  url: 'php/scanx.php',
    type: 'POST',
    data: d,
   success: function(data){
   
-      console.log(data);
+      console.log('scan ok '+data);
     
   }
 });
@@ -30,6 +30,30 @@ $.ajax({
       });
   });
 
+// button  scan
+      $(function() {
+    $( "#lolo" )
+      .button()
+      .click(function( event ) {
+        event.preventDefault();
+   
+
+          var d={'val1': 999}; // первий раз ненадо дни автоматом 2 
+
+$.ajax({
+  url: 'php/scan3.php',
+   type: 'POST',
+   data: d,
+  success: function(data){
+  
+      console.log('scan ok lolo '+data);
+    
+  }
+});
+
+
+      });
+  });
 
 
 
