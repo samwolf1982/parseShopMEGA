@@ -14,11 +14,52 @@ require_once 'Parse_a1.php';
 require_once 'Sent_to_WP.php';*/
 
                     // 50 el
-scanx('dodod');
+if(isset($argv)){
+
+  if (isset($argv[2]) & is_int ($argv[2])) {
+
+  for ($i=2; $i <=intval($argv[2]) ; $i++) {
+
+  	# code...else{
+ scanx($argv[1].'?page='.$i);
+  }
+    }
+  else
+ {
+	if (isset($argv[1])) {
+		# code...
+			  scanx($argv[1]);
+	}
+
+ }
+// end console
+} 
+
+if(isset($_GET )){
+	echo $_GET['path'];
+	if(isset($_GET['path'])){
+	//die();
+		if(isset($_GET['count'])){
+
+			 for ($i=2; $i <=intval($_GET['count']) ; $i++) { 
+			 	# code...
+			 				 scanx($_GET['path'].'?page='.$i);
+			 }
+
+		}else
+	 scanx($_GET['path']);
+	}
+		else{
+	$path_site='http://alitrust.ru/boasts/odezhda-i-obuv';
+           scanx($path_site);
+       }
+
+}
+
 
  function scanx($path_site)
 {
-	$path_site='http://alitrust.ru/boasts/odezhda-i-obuv';
+	//$path_site='http://alitrust.ru/boasts/odezhda-i-obuv';
 	# code...
   phpQuery::ajaxAllowHost($GLOBALS['curent_host']); 
 
@@ -45,10 +86,12 @@ scanx('dodod');
 
  // 1  loop
     # code...    count == 50    manual 1  // собрать ссилки на дочер ст.
- for ($i=1; $i <= $total_count-$total_count+2 ; $i++) { 
+ //for ($i=1; $i <= $total_count-$total_count+2 ; $i++) { 
+     $child_links=array();
+ 	for ($i=1; $i <= $total_count ; $i++) { 
   // результат для сссылок на дочерние страницы
            $res=array();
-           $child_links=array();
+      
   # code...
      $a_main='div.b-boast-list__item:nth-child('.$i.") a";
      $el=$document->find($str=str_replace('>', '', $a_main) );
@@ -64,11 +107,10 @@ $pq=null;
 
    // end loop
   }
-
-
+echo count($child_links);
 // loop 2  проход по 50 ссилок  sett time script (50*4)
   try {
-   set_time_limit(count($child_links)*3); 
+   set_time_limit($total_count*3); 
 } catch (Exception $e) {
     echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
 }
@@ -96,8 +138,8 @@ $wp=send('root',$data);
 
 
 }else{
-  echo 'PRESENT ';
-  // break
+  echo 'Есть совпадение дальше не обрабатываеться.';
+   break;
 }
 
 //if()    
@@ -205,7 +247,7 @@ fclose($myfile);
 */
                    return false;
 		}
-		else return true;
+		else die(); return true;
 	// end	is_present
 	}
 	 function create_content($data)
