@@ -17,7 +17,12 @@ require_once 'Parse_a1.php';
 require_once 'Sent_to_WP.php';
 
                                //  FULL PATH !!!!!
-$is_present=new Is_Present('/opt/lampp/htdocs/testwp/php/hasess.txt');
+
+//$is_present=new Is_Present('/opt/lampp/htdocs/testwp/php/hasess.txt');
+/*echo "---------------------------------";
+echo dirname(__FILE__);*/
+                                  // uncoment at hosting
+//$is_present=new Is_Present('/home/u479185984/public_html/php/hasess.txt');
 $GLOBALS['is_present'] = $is_present;
 $arr= array();
 
@@ -28,7 +33,7 @@ $obj=new Manager($arr);
 // 0 for ali
 // первыи из arr[];
 $obj->run(0);
-$obj->run(1);
+//$obj->run(1);
 
 
 // обязательно ввести все

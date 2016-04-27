@@ -1,5 +1,5 @@
 <?php
-  
+  phpinfo();
   /**
   * 
   */
@@ -17,15 +17,23 @@
 
       echo $this->listsites[0]->url.$this->listsites[0]->childpage[$index_site].'-----------';
 
+/*$doc=phpQuery::newDocument($this->listsites[0]->url.$this->listsites[0]->childpage[$index_site]);*/
+
 try {
+
+
+
+
   phpQuery::get($this->listsites[0]->url.$this->listsites[0]->childpage[$index_site],'Parse_alitruse::parse'); 
+  
 } catch (Exception $e) {
-       echo "ошибка соединения ";
+       echo "ошибка соединения ".__FILE__;
 }
 try {
   
- echo $this->listsites[0]->url.$this->listsites[0]->childpage[$index_site].'/?page=2'.'-----------';
-phpQuery::get($this->listsites[0]->url.$this->listsites[0]->childpage[$index_site].'?page=2','Parse_alitruse::parse'); 
+/* echo $this->listsites[0]->url.$this->listsites[0]->childpage[$index_site].'/?page=2'.'-----------';
+phpQuery::get($this->listsites[0]->url.$this->listsites[0]->childpage[$index_site].'?page=2','Parse_alitruse::parse'); */
+
 } catch (Exception $e) {
          echo "ошибка соединения " ;
 }

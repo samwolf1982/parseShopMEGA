@@ -20,7 +20,7 @@ class Parse_alitruse
 
 
 
-  //echo $obj->ways['main'];
+  //echo $obj->ways['main'];       take count
  $total_count =$document->find($str=str_replace('>', '', $obj->ways['main'])   )->count();
 
 //echo "TOTSL: ".$total_count;
@@ -30,7 +30,7 @@ class Parse_alitruse
 
  // 1  loop
     # code...
- for ($i=1; $i <= $total_count-$total_count+3 ; $i++) { 
+ for ($i=1; $i <= $total_count-$total_count+1 ; $i++) { 
   // результат для сссылок на дочерние страницы
   $res=array();
   # code...
@@ -53,7 +53,7 @@ $pq=null;
 // loop 2   проход по 50 ссилок
 foreach ($obj->child_links as $key => $value) {
   # code...
-      sleep(rand(3,10));
+      sleep(rand(1,5));
          // поход в дочерние ссылки по полной ссылке выше
 $r=$obj->go_to_main_el($value,$obj->curenhost);
 
@@ -130,7 +130,7 @@ public function create_content($data)
    //temp=array(); // fotos[] text
      $temp=$host; // fotos[] text
     # code...
-    sleep(rand(3,10));
+   // sleep(rand(3,10));
         # code...
         //echo $value['href'] ."<br>";
      phpQuery::get($link, array(), function ($d) use (&$temp)
