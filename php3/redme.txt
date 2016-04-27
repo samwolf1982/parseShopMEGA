@@ -1,0 +1,27 @@
+php scanx.php http://alitrust.ru/boasts/odezhda-i-obuv  13
+php scanx.php http://alitrust.ru/boasts/bizhuteriya-i-chasy  14
+php scanx.php http://alitrust.ru/boasts/vse-dlya-detyei  8
+php scanx.php http://alitrust.ru/boasts/home  9
+php scanx.php http://alitrust.ru/boasts/pets  2
+php scanx.php http://alitrust.ru/boasts/telefony-i-kompyutery  11
+php scanx.php http://alitrust.ru/boasts/sumki-i-aksessuary  7
+php scanx.php http://alitrust.ru/boasts/sport-khobbi-i-razvlecheniya  5
+php scanx.php http://alitrust.ru/boasts/avtotovary  3
+php scanx.php http://alitrust.ru/boasts/elektronika  12
+php scanx.php http://alitrust.ru/boasts/adult18  2
+php scanx.php http://alitrust.ru/boasts/other  8
+
+
+
+13
+14
+8
+9
+2
+11
+7
+5
+3
+12
+2
+8
