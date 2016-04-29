@@ -67,7 +67,7 @@ require_once 'PhpDebuger/debug.php';
            $c=count($el1);
 
       
-        for ($i=3; $i <= $c; $i++) { 
+        for ($i=1; $i <= $c; $i++) { 
               # code...
 
   $s='#posts > div:nth-child('.$i.') > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2) > div:nth-child(0)';

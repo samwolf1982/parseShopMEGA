@@ -34,7 +34,7 @@ require_once 'PhpDebuger/debug.php';
          // поиск а указателя на ссилку на последниюю ссілку
 
       $document=phpQuery::newDocument($do);
-   
+      
      // парс ст. +отправка и сверка
       parse($document,$path_site);
 
@@ -62,37 +62,44 @@ require_once 'PhpDebuger/debug.php';
                   // парс без параметров 
                         // если есть совпадения сразу брейк.
 #posts > div:nth-child(4)     // количество елементов на странице
-        $s='#posts > div';
+// удалить все пости спасибо  post_thanks_box_
+       $s='div[id^="post_thanks_box"]';
+$document->find($s)->remove();
+
+
+  
+          // поиск поста с id edit
+      /*  $s='div[id^="edit"]';
         $el1 =$document->find($s);
-           $c=count($el1);
+      */
+          // $c=count($el1);
 
-      
-        for ($i=3; $i <= $c; $i++) { 
+            //  search td -post
+$s='td[id^="td_post_"]';          //  10 шт
+$s='div[id^="post_message_"]';   // 10 
+        $el1 =$document->find($s);
+       
+       
+   //     echo   $c=count($el1);
+   foreach ($el1 as $key => $value) {
+     # code...
+    $res['text']=array();
+          $res['img']=array();
+    // take text
+             $res['text'][]= pq($value)->text();
+    // find image
+            $im= pq($value)->find('img[src$=".jpg"]');
+           // echo "<br>cddd ".count($im).'<br>';
+            // take foto
+            foreach ($im as $key1 => $value1) {
               # code...
+                   $res['img'][]=pq($value1)->attr('src');
+            }
+               //echo "<br>----------------<br>";
+              // var_dump($res);
 
-  $s='#posts > div:nth-child('.$i.') > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2) > div:nth-child(0)';
-            $el1 =$document->find($s);
-
-$res['text'][]=$el1->text();
-
-
-
-
- // take foto 
-$res['img']=array();
-$res['href']=array();
-$pq=pq($el1)->find('img'); #post_message_5324824 > a:nth-child(4) > img:nth-child(1)
-//$pq=pq($el1)->find('a > img:nth-child(1)');  // доделать пропавшие картинкі 
-      foreach ($pq as $key => $value) {
-        # code...
-       $res['img'][]= pq( $value)->attr('src');
-      }
-     //    проверка по хешу и в вп
-                    
-       //print_r($res);    
-        
-   $txt=(count($res['text'])>1)?$res['text'][0].' '.$res['text'][1]:$res['text'][0];
-   
+$txt=$res['text'][0];
+//echo $txt;
             // проверка на совпадение  сделать     false    go to wp 
 if( is_present(hash('ripemd160', $txt))==false){
 
@@ -108,9 +115,10 @@ $path_parts = pathinfo($path_site);
 
 
 $data='title='.$path_parts['dirname'].'&'.create_content($res);
+// UNCOMENT
 $wp=send('root',$data);
-
-
+//var_dump($res);
+//print_r($res);
 
 }else{
   $file_c = file_get_contents($GLOBALS['path_hash']);
@@ -126,13 +134,14 @@ $wp=send('root',$data);
 
 
 
-       $res=null;
 
-     // echo "<br>-------------------<br>";
 
-                 
-                 // end for  for page 
-              }       
+   //echo "<br><br><br><br><br><br>";
+        /// end loop        
+   }
+   
+
+    
  }
 
 // dont move
@@ -189,10 +198,12 @@ fclose($myfile);
                    // работа дальше
                    file_put_contents($path,','.$value,FILE_APPEND | LOCK_EX);
 
+            
                    return false;
 		}
 		else {
 			//die();
+     // return false; //    //remove later
 			 return true;
 		}
 	// end	is_present
@@ -246,7 +257,7 @@ $data2='n=n&autor='.$autor.'&'.$data;
 if(isset($argv)){
    
   if (isset($argv[2]) && is_numeric($argv[2])) {
-  set_time_limit(intval($argv[2])*20); 
+  set_time_limit(intval($argv[2])*30); 
 
   for ($i=1; $i <=intval($argv[2]) ; $i++) {
 
