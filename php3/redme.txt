@@ -25,3 +25,4 @@ php scanx.php http://alitrust.ru/boasts/other  8
 12
 2
 8
+
