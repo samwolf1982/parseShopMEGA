@@ -99,7 +99,7 @@ $s='div[id^="post_message_"]';   // 10
               // var_dump($res);
 
 $txt=$res['text'][0];
-//echo $txt;
+
             // проверка на совпадение  сделать     false    go to wp 
 if( is_present(hash('ripemd160', $txt))==false){
 
