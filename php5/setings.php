@@ -1,5 +1,5 @@
 <?php
-$GLOBALS['path_hash'] = '/opt/lampp/htdocs/testwp/php5/hasess.txt';
+$GLOBALS['path_hash'] = '/opt/lampp/htdocs/testwp/php3/hasess.txt';
 $GLOBALS['path_to_WP'] = 'http://testfordel.atwebpages.com/api/create_post';
 
 $GLOBALS['path_to_WP'] = 'http://www.imageplugin.dev/api/create_post';
